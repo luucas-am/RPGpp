@@ -14,6 +14,10 @@ class Game
         Game();
         ~Game();
         void showMainMenu();
+    private:
+        void startGame();
+        void showGameOver();
+        bool isGameOver(Character& character);
 };
 
 #endif

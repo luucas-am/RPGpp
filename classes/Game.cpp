@@ -3,6 +3,9 @@
 #include <conio.h>
 #include <windows.h> // Para `system("cls")` no Windows
 #include <Point.h>
+#include <Slime.h>
+#include <Skeleton.h>
+#include <Dragon.h>
 
 using namespace std;
 
@@ -22,6 +25,8 @@ Game::~Game() { }
 
 void Game::showMainMenu()
 {
+    system("cls");
+
     string options[2] = { "Start Game", "Exit" };
     string arrow = ">";
     Point currentOption = { 0, 0 };  // Posição inicial (0, 0)
@@ -39,15 +44,15 @@ void Game::showMainMenu()
         // Lê a tecla pressionada
         int key = _getch();
         switch (key) {
-            case KEY_UP:
+            case KEY_LEFT:
                 if (currentOption.x > 0) currentOption.x--;
                 break;
-            case KEY_DOWN:
+            case KEY_RIGHT:
                 if (currentOption.x < 1) currentOption.x++;
                 break;
             case KEY_ENTER:
-                //if (currentOption.x == 0) startGame();
-                //else if (currentOption.x == 1) return;
+                if (currentOption.x == 0) startGame();
+                else if (currentOption.x == 1) return;
                 break;
             case KEY_ESC:
                 cout << "Exiting..." << endl;
@@ -55,4 +60,62 @@ void Game::showMainMenu()
         }
         system("cls");
     }
+}
+
+void Game::startGame()
+{
+    system("cls");
+    cout << "Starting game..." << endl;
+    Sleep(1000);
+    system("cls");
+
+    // Inicializa o jogo
+    Mage hero = Mage();
+    Slime slime = Slime();
+    Skeleton skeleton = Skeleton();
+    Dragon dragon = Dragon();
+
+    Stage stage = Stage(&slime, &hero);
+    Stage stage2 = Stage(&skeleton, &hero);
+    Stage stage3 = Stage(&dragon, &hero);
+
+    stages.push_back(stage);
+    stages.push_back(stage2);
+    stages.push_back(stage3);
+
+    // Inicia o primeiro estágio
+    for (int i = 0; i < 3; i++) {
+        stages[i].showBattleMenu();
+
+        // Verifica se o herói ainda está vivo
+        if (isGameOver(hero)) {
+            showGameOver();
+            return;
+        } else {
+            score += hero.level * 100 + hero.hp * 10 + hero.mana * 5;
+            cout << "Stage " << i + 1 << " cleared!" << endl;
+            std::cin.ignore();
+
+            // Exibe a mensagem de vitória
+            if (i == 2) {
+                system("cls");
+                cout << "Congratulations! You have completed all stages!" << endl;
+                cout << "Score: " << score << endl;
+                system("pause");
+            }
+        }
+    }
+}
+
+void Game::showGameOver()
+{
+    cout << "Game Over!" << endl;
+    cout << "Score: " << score << endl;
+    system("pause");
+}
+
+bool Game::isGameOver(Character& character)
+{
+    if (character.hp <= 0) return true;
+    else return false;
 }

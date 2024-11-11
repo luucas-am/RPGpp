@@ -1,5 +1,6 @@
 #include <Slime.h>
 #include <stdlib.h>
+#include <iostream>
 
 Slime::Slime()
 {
@@ -25,4 +26,9 @@ void Slime::takeDamage(int damage)
 {
     int calculatedDmg = (damage - defense) >= 1 ? damage - defense : 1;
     hp -= calculatedDmg;
+
+    // Garante que o HP não fique abaixo de zero
+    if (hp < 0) {
+        hp = 0;
+    }
 }

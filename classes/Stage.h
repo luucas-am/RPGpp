@@ -8,9 +8,9 @@
 class Stage
 {
     public:
-        Enemy enemy;
-        Mage mage;
-        Stage(Enemy& enemy, Mage& mage);
+        Enemy* enemy;
+        Mage* mage;
+        Stage(Enemy* enemy, Mage* mage);
         ~Stage();
         void showBattleMenu();
 };

@@ -14,7 +14,7 @@ Mage::Mage()
     intelligence = 15;
     level = 1;
     experience = 0;
-    experienceToNextLevel = 100;
+    experienceToNextLevel = 50;
 }
 
 Mage::~Mage() { }
@@ -68,7 +68,10 @@ void Mage::castHeal()
 {
     if (mana >= 10) {
         int heal = intelligence * 2 + (rand() % 10);
-        hp += heal > maxHP ? maxHP - hp : heal;
+        hp += heal;  // Aplica a cura
+        if (hp > maxHP) {
+            hp = maxHP;  // Garante que a vida não exceda o máximo
+        }
         mana -= 10;
     }
 }
