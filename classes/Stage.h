@@ -13,6 +13,7 @@ class Stage
         Stage(Enemy* enemy, Mage* mage);
         ~Stage();
         void showBattleMenu();
+        void enemyDefeated(Enemy* enemy, Mage* mage);
 };
 
 #endif

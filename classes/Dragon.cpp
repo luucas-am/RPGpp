@@ -4,8 +4,8 @@
 Dragon::Dragon()
 {
     name = "Teiu";
-    maxHP = 500;
-    hp = 500;
+    maxHP = 450;
+    hp = 450;
     strength = 20;
     defense = 15;
     speed = 9;

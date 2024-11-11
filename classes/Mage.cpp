@@ -43,7 +43,7 @@ void Mage::levelUp()
     intelligence += 3;
     level++;
     experience = 0;
-    experienceToNextLevel += level * 50 + 100;
+    experienceToNextLevel += level * 50 + 10;
 }
 
 void Mage::castFireball(Enemy& enemy)
@@ -58,8 +58,9 @@ void Mage::castFireball(Enemy& enemy)
 void Mage::castMagicMissile(Enemy& enemy)
 {
     if (mana >= 5) {
+        int missileAmount = 1 + (rand() % 3);
         int damage = intelligence + (rand() % 5) + (1 * level - enemy.level);
-        enemy.takeDamage(damage);
+        enemy.takeDamage(damage * missileAmount);
         mana -= 5;
     }
 }

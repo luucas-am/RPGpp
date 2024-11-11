@@ -104,17 +104,7 @@ void Stage::showBattleMenu()
 
         // Verifica se o inimigo morreu
         if (enemy->hp <= 0) {
-            cout << "You defeated the " << enemy->name << "!" << endl;
-            cout << "You gained " << enemy->experiencePoints * (1 + (enemy->level - mage->level)) << " experience points!";
-            mage->experience += enemy->experiencePoints * (1 + (enemy->level - mage->level));
-            std::cin.ignore();
-
-            // Verifica se o Mago subiu de nível
-            if (mage->experience >= mage->experienceToNextLevel) {
-                mage->levelUp();
-                cout << "You leveled up! You are now level " << mage->level << "!";
-                std::cin.ignore();
-            }
+            enemyDefeated(enemy, mage);
             return;
         }
 
@@ -132,5 +122,19 @@ void Stage::showBattleMenu()
         }
 
         system("cls");
+    }
+}
+
+void Stage::enemyDefeated(Enemy* enemy, Mage* mage)
+{
+    cout << "You defeated the " << enemy->name << "!" << endl;
+    cout << "You gained " << enemy->experiencePoints * (1 + (enemy->level - mage->level)) << " experience points!";
+    mage->experience += enemy->experiencePoints * (1 + (enemy->level - mage->level));
+    std::cin.ignore();
+
+    if (mage->experience >= mage->experienceToNextLevel) {
+        mage->levelUp();
+        cout << "You leveled up! You are now level " << mage->level << "!";
+        std::cin.ignore();
     }
 }

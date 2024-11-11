@@ -12,6 +12,7 @@
                 "-I./classes",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-static",
             ],
             "options": {
                 "cwd": "${fileDirname}"

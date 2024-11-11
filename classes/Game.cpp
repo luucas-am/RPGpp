@@ -6,6 +6,8 @@
 #include <Slime.h>
 #include <Skeleton.h>
 #include <Dragon.h>
+#include <Kobold.h>
+#include <Golem.h>
 
 using namespace std;
 
@@ -73,18 +75,18 @@ void Game::startGame()
     Mage hero = Mage();
     Slime slime = Slime();
     Skeleton skeleton = Skeleton();
+    Kobold kobold = Kobold();
+    Golem golem = Golem();
     Dragon dragon = Dragon();
 
-    Stage stage = Stage(&slime, &hero);
-    Stage stage2 = Stage(&skeleton, &hero);
-    Stage stage3 = Stage(&dragon, &hero);
-
-    stages.push_back(stage);
-    stages.push_back(stage2);
-    stages.push_back(stage3);
+    stages.push_back(Stage(&slime, &hero));
+    stages.push_back(Stage(&skeleton, &hero));
+    stages.push_back(Stage(&kobold, &hero));
+    stages.push_back(Stage(&golem, &hero));
+    stages.push_back(Stage(&dragon, &hero));
 
     // Inicia o primeiro estágio
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < stages.size(); i++) {
         stages[i].showBattleMenu();
 
         // Verifica se o herói ainda está vivo
@@ -97,7 +99,7 @@ void Game::startGame()
             std::cin.ignore();
 
             // Exibe a mensagem de vitória
-            if (i == 2) {
+            if (i == stages.size() - 1) {
                 system("cls");
                 cout << "Congratulations! You have completed all stages!" << endl;
                 cout << "Score: " << score << endl;
