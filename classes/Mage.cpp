@@ -48,6 +48,7 @@ void Mage::levelUp()
 
 void Mage::castFireball(Enemy& enemy)
 {
+    // Verifica se o personagem tem mana suficiente
     if (mana >= 10) {
         int damage = intelligence * 2 + (rand() % 10) + (1 * level - enemy.level);
         enemy.takeDamage(damage);
@@ -57,6 +58,7 @@ void Mage::castFireball(Enemy& enemy)
 
 void Mage::castMagicMissile(Enemy& enemy)
 {
+    // Verifica se o personagem tem mana suficiente
     if (mana >= 5) {
         int missileAmount = 1 + (rand() % 3);
         int damage = intelligence + (rand() % 5) + (1 * level - enemy.level);
@@ -67,6 +69,7 @@ void Mage::castMagicMissile(Enemy& enemy)
 
 void Mage::castHeal()
 {
+    // Verifica se o personagem tem mana suficiente
     if (mana >= 10) {
         int heal = intelligence * 2 + (rand() % 10);
         hp += heal;  // Aplica a cura

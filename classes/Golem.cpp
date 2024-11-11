@@ -17,12 +17,14 @@ Golem::~Golem() { }
 
 void Golem::attackCharacter(Character& character)
 {
+    // Formula ataque
     int damage = strength + (rand() % 3) + (1 * level - character.level);
     character.takeDamage(damage);
 }
 
 void Golem::takeDamage(int damage)
 {
+    // Formula defesa
     int calculatedDmg = (damage - defense) >= 1 ? damage - defense : 1;
     hp -= calculatedDmg;
 }

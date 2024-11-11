@@ -17,12 +17,14 @@ Kobold::~Kobold() { }
 
 void Kobold::attackCharacter(Character& character)
 {
+    // Formula ataque
     int damage = strength + (rand() % 8) + (1 * level - character.level);
     character.takeDamage(damage);
 }
 
 void Kobold::takeDamage(int damage)
 {
+    // Formula defesa 
     int calculatedDmg = (damage - defense) >= 1 ? damage - defense : 1;
     hp -= calculatedDmg;
 }

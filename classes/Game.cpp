@@ -11,6 +11,7 @@
 
 using namespace std;
 
+// Define as teclas de controle
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_LEFT 75
@@ -27,8 +28,10 @@ Game::~Game() { }
 
 void Game::showMainMenu()
 {
+    // Limpa a tela
     system("cls");
 
+    // Opções do menu
     string options[2] = { "Start Game", "Exit" };
     string arrow = ">";
     Point currentOption = { 0, 0 };  // Posição inicial (0, 0)

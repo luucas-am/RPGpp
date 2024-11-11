@@ -17,12 +17,14 @@ Dragon::~Dragon() { }
 
 void Dragon::attackCharacter(Character& character)
 {
+    // Formula ataque
     int damage = strength * 1.5 + (rand() % 10) + (1 * level - character.level);
     character.takeDamage(damage);
 }
 
 void Dragon::takeDamage(int damage)
 {
+    // Formula defesa
     int calculatedDmg = (damage - defense) >= 1 ? damage - defense : 1;
     hp -= calculatedDmg;
 }

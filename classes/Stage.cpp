@@ -7,6 +7,7 @@
 
 using namespace std;
 
+// Define as teclas de controle
 #define KEY_UP 72
 #define KEY_DOWN 80
 #define KEY_LEFT 75
@@ -24,6 +25,7 @@ Stage::~Stage() { }
 
 void Stage::showBattleMenu()
 {
+    // Opções do menu
     string options[2][2] = { { "Attack", "Fireball" }, { "Magic Missile", "Heal" } };
     string arrow = ">";
     Point currentOption = { 0, 0 };  // Posição inicial (0, 0)
